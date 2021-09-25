@@ -1,0 +1,29 @@
+version: "3.4"
+
+services:
+  db:
+    image: postgres:12-alpine
+    restart: always
+    tmpfs: /var/lib/postgresql/data
+    ports:
+      - "${PORT_DB-5432}:5432"
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: postgres
+  
+  restapi-vectary: 
+    container_name: restapi-vectary
+    build: ./server
+    ports: 
+      - "3000:3000"
+    depends_on: 
+      - db
+    environment:
+      CONNECTION: postgres
+      HOST: db
+      DBUSERNAME: postgres
+      PASSWORD: postgres
+      DATABASE: postgres
+      DBPORT: 5432
+      ENTITIES : 'build/src/connection/entities/**/*.*'
+      MIGRATIONS : 'build/src/connection/migrations/**/*.*'
