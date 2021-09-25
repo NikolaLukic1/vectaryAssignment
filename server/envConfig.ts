@@ -9,5 +9,7 @@ export default {
     TYPEORM_USERNAME: process.env.DBUSERNAME,
     TYPEORM_PASSWORD: process.env.PASSWORD,
     TYPEORM_DATABASE: process.env.DATABASE,
-    TYPEORM_PORT: process.env.DBPORT
+    TYPEORM_PORT: process.env.DBPORT,
+    ENTITIES: process.env.ENTITIES,
+    MIGRATIONS: process.env.MIGRATIONS
 }

@@ -108,7 +108,7 @@ class Controller {
           const messageNew = await getManager().findOne(Message, messageId);
           
           if(!messageNew){
-              throw new Error(`Message with id: ${messageId} not found`);
+              throw new NotFoundError(`Message with id: ${messageId} not found`);
           }
         
           messageNew.message = messageText? messageText: messageNew.message;
